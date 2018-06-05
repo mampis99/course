@@ -11,11 +11,11 @@
   </div>
   <div class="row">
     <div class="container">
-      <div class="progress" style="width:60%; margin:auto">
+
         <div class="progress">
           <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
-      </div>
+
       <form id="regiration_form" action="#" method="post">
           <!--form biodata-->
           <fieldset>
