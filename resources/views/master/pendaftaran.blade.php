@@ -24,11 +24,12 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+    <!--my css-->
+    <link rel="stylesheet" href="{{URL::asset('css/mycss.css')}}">
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
   </head>
-  <body class="hold-transition register-page">
+  <body>
 
     @yield('content')
 
@@ -38,7 +39,8 @@
     <script src="{{URL::asset('adminlte/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
     <!-- iCheck -->
     <script src="{{URL::asset('adminlte/plugins/iCheck/icheck.min.js')}}"></script>
-    <script>
+
+    <script type="text/javascript">
       $(function () {
         $('input').iCheck({
           checkboxClass: 'icheckbox_square-blue',
@@ -46,6 +48,7 @@
           increaseArea: '20%' /* optional */
         });
       });
+    @yield('javascript')
     </script>
   </body>
 </html>
