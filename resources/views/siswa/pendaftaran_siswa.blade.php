@@ -12,54 +12,102 @@
 
   <div class="row">
     <div class="container">
-      <div class="progress">
-        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+      <div class="col-md-6">
+        <div class="row">
+          <div class="progress">
+            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </div>
+        <form action="#" method="post">
+          <!--form biodata-->
+          <fieldset>
+            <div class="row">
+              <div class="box">
+                <div class="box-header">
+                  <h3>Biodata Siswa</h3>
+                </div>
+                <div class="box-body">
+                  <div class="form-group">
+                    <label for="nama_siswa">Nama Siswa</label>
+                    <input type="text" class="form-control" id="nama_siswa" name="nama_siswa">
+                  </div>
+                  <div class="form-group">
+                    <label for="nama_panggilan">Nama Panggilan</label>
+                    <input type="text" class="form-control" id="nama_panggilan" name="nama_panggilan">
+                  </div>
+                  <div class="form-group">
+                    <label for="tempat_lahir">Tempat Lahir</label>
+                    <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir">
+                  </div>
+                  <div class="form-group">
+                    <label for="tanggal_lahir">Tanggal Lahir</label>
+                    <input type="text" class="form-control" id="tanggal_lahir" name="tanggal_lahir">
+                  </div>
+                  <div class="form-group">
+                    <label for="jenis_kelamin">Jenis Kelamin</label>
+                    <input type="text" class="form-control" id="jenis_kelamin" name="jenis_kelamin">
+                  </div>
+                  <div class="form-group">
+                    <label for="kota">Kota</label>
+                    <input type="text" class="form-control" id="kota" name="kota">
+                  </div>
+                  <div class="form-group">
+                    <label for="propinsi">Propinsi</label>
+                    <input type="text" class="form-control" id="propinsi" name="propinsi">
+                  </div>
+                  <div class="form-group">
+                    <label for="no_telpon">No Telpon</label>
+                    <input type="text" class="form-control" id="no_telpon" name="no_telpon">
+                  </div>
+                  <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="text" class="form-control" id="email" name="email">
+                  </div>
+                  <div class="form-group">
+                    <label for="id_referal">Id Referal</label>
+                    <input type="text" class="form-control" id="id_referal" name="#">
+                  </div>
+                  <button type="button" class="btn btn-primary pull-right" name="button">Next</button>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+
+          <!--from data orang tua-->
+          <fieldset>
+            <div class="row">
+              <div class="box">
+                <div class="box-header">
+                  <h3>Data Orang Tua</h3>
+                </div>
+                <div class="box-body">
+                  <div class="form-group">
+                    <label for="nama_orangtua">Nama Orang Tua</label>
+                    <input type="text" class="form-control" id="nama_orangtua" name="nama_orangtua">
+                  </div>
+                  <div class="form-group">
+                    <label for="alamat_orangtua">Alamat Orang Tua</label>
+                    <input type="text" class="form-control" id="alamat_orangtua" name="alamat_orangtua">
+                  </div>
+                  <div class="form-group">
+                    <label for="alamat_orangtua">Alamat Orang Tua</label>
+                    <input type="text" class="form-control" id="alamat_orangtua" name="alamat_orangtua">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+
+          <!--form account baru-->
+          <fieldset>
+            <div class="row">
+
+            </div>
+          </fieldset>
+        </form>
       </div>
-      <form id="registration_form" novalidate action="#" method="post">
-        <fieldset>
-          <h2>Biodata Siswa</h2>
-          <div class="form-group">
-            <label for="nama">Nama</label>
-            <input type="text" class="from-control" id="nama_siswa" name="nama_siswa" placeholder="Nama Siswa">
-          </div>
-          <div class="form-group">
-            <label for="nama_panggilan">Nama Panggilan</label>
-            <input type="text" class="from-control" id="nama_panggilan" name="nama_panggilan" placeholder="Nama Panggilan">
-          </div>
-          <div class="form-group">
-            <label for="tempat_lahir"></label>
-            <input type="text" class="from-control" id="tempat_lahir" name="tempat_lahir" placeholder="Tempat Lahir">
-          </div>
-          <div class="form-group">
-            <label for="tanggal_lahir"></label>
-            <input type="text" class="from-control" id="tanggal_lahir" name="tanggal_lahir" placeholder="Tanggal Lahir">
-          </div>
-          <div class="form-group">
-            <label for="jenis_kelamin"></label>
-            <input type="text" class="from-control" id="jenis_kelamin" name="jenis_kelamin" placeholder="Jenis Kelamin">
-          </div>
-          <div class="form-group">
-            <label for="alamat"></label>
-            <input type="text" class="from-control" id="alamat" name="alamat" placeholder="Alamat">
-          </div>
-          <div class="form-group">
-            <label for="kota"></label>
-            <input type="text" class="from-control" id="kota" name="kota" placeholder="Kota">
-          </div>
-          <div class="form-group">
-            <label for="propinsi"></label>
-            <input type="text" class="from-control" id="propinsi" name="propinsi" placeholder="Propinsi">
-          </div>
-          <div class="form-group">
-            <label for="no_telpon"></label>
-            <input type="text" class="from-control" id="no_telpon" name="no_telpon" placeholder="No Telpon">
-          </div>
-          <div class="form-group">
-            <label for="email"></label>
-            <input type="email" class="from-control" id="email" name="email" placeholder="Email">
-          </div>
-        </fieldset>
-      </form>
+
+
     </div>
   </div>
 
