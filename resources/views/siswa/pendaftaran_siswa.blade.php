@@ -90,9 +90,11 @@
                     <input type="text" class="form-control" id="alamat_orangtua" name="alamat_orangtua">
                   </div>
                   <div class="form-group">
-                    <label for="alamat_orangtua">Alamat Orang Tua</label>
-                    <input type="text" class="form-control" id="alamat_orangtua" name="alamat_orangtua">
+                    <label for="no_telpon_orangtua">No. Telpon Orang Tua</label>
+                    <input type="text" class="form-control" id="no_telpon_orangtua" name="no_telpon_orangtua">
                   </div>
+                  <button type="button" class="btn btn-default" name="button">Previous</button>
+                  <button type="button" class="btn btn-primary pull-right" name="button">Next</button>
                 </div>
               </div>
             </div>
@@ -101,7 +103,27 @@
           <!--form account baru-->
           <fieldset>
             <div class="row">
-
+              <div class="box">
+                <div class="box-header">
+                  <h3>Account</h3>
+                </div>
+                <div class="box-body">
+                  <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" id="username" name="username">
+                  </div>
+                  <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="text" class="form-control" id="password" name="password">
+                  </div>
+                  <div class="form-group">
+                    <label for="re_password">Re-Password</label>
+                    <input type="text" class="form-control" id="re_password" name="re_password">
+                  </div>
+                  <button type="button" class="btn btn-default" name="button">Previous</button>
+                  <button type="submit" class="btn btn-success pull-right" name="button">Submit</button>
+                </div>
+              </div>
             </div>
           </fieldset>
         </form>
