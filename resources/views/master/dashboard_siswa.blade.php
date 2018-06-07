@@ -39,7 +39,7 @@
 <!--Header-->
   <header class="main-header">
     <!-- Logo -->
-    <a href="{{'/siswa'}}" class="logo">
+    <a href="/dashboard/siswa" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>M</b>CL</span>
       <!-- logo for regular state and mobile devices -->

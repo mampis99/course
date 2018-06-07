@@ -104,6 +104,7 @@ class SiswaController extends Controller
 
     public function home()
     {
-      return 'test';
+
+      return view('siswa/home');
     }
 }

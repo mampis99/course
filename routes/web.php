@@ -19,12 +19,17 @@ Route::get('/tst', function () {
     return view('master/dashboard_siswa');
 });
 
+//Login
+Route::get('/login','LoginController@index');
+Route::post('/login/post','LoginController@post_login');
+
+
 //pendaftaran siswa
 Route::get('/pendaftaran/siswa','SiswaController@pendaftaran_siswa');
 Route::post('/pendaftaran/siswa/save','SiswaController@pendaftaran_siswa_save');
 
 //dashboard siswa
-Route::get('/ok','SiswaController@home');
+Route::get('/dashboard/siswa','SiswaController@home');
 
 
 //pendaftaran guru
