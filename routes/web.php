@@ -22,7 +22,7 @@ Route::get('/tst', function () {
 //Login
 Route::get('/login','LoginController@index');
 Route::post('/login/post','LoginController@post_login');
-
+Route::get('/logout','LoginController@logout');
 
 //pendaftaran siswa
 Route::get('/pendaftaran/siswa','SiswaController@pendaftaran_siswa');

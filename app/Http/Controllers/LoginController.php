@@ -66,4 +66,10 @@ class LoginController extends Controller
       //dd($data);
 
     }
+
+    public function logout()
+    {
+      Session::flush();
+      return redirect('/');
+    }
 }

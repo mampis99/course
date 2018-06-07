@@ -79,9 +79,9 @@
             @endif
 
             <div class="top-right links">
-              <a href="#">Home</a>
-              <a href="#">Login</a>
-              <a href="#">Register</a>
+              <a href="/">Home</a>
+              <a href="/login">Login</a>
+              <a href="/pendaftaran/siswa">Register</a>
             </div>
 
             <div class="content">
