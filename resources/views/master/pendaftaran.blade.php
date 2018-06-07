@@ -17,7 +17,8 @@
     <link rel="stylesheet" href="{{URL::asset('adminlte/dist/css/AdminLTE.min.css')}}">
     <!-- iCheck -->
     <link rel="stylesheet" href="{{URL::asset('adminlte/plugins/iCheck/square/blue.css')}}">
-
+    <!-- bootstrap datepicker -->
+    <link rel="stylesheet" href="{{URL::asset('adminlte/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css')}}">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -39,6 +40,8 @@
     <script src="{{URL::asset('adminlte/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
     <!-- iCheck -->
     <script src="{{URL::asset('adminlte/plugins/iCheck/icheck.min.js')}}"></script>
+    <!-- bootstrap datepicker -->
+    <script src="{{URL::asset('adminlte/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}"></script>
 
     <script type="text/javascript">
       $(function () {

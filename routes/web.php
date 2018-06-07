@@ -16,11 +16,12 @@ Route::get('/', function () {
 });
 
 Route::get('/tst', function () {
-    return view('master/pendaftaran');
+    return view('master/dashboard_siswa');
 });
 
 //pendaftaran siswa
 Route::get('/pendaftaran/siswa','SiswaController@pendaftaran_siswa');
+Route::post('/pendaftaran/siswa/save','SiswaController@pendaftaran_siswa_save');
 
 //dashboard siswa
 Route::get('/ok','SiswaController@home');

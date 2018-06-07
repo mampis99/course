@@ -5,7 +5,7 @@
   <div class="row">
     <div class="box-body">
       <div class="register-logo">
-          <a href="#"><b>Merachel</b> Fashion Course</a>
+          <a href="/"><b>Merachel</b> Fashion Course</a>
       </div>
     </div>
   </div>
@@ -16,7 +16,8 @@
           <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
 
-      <form id="regiration_form" action="#" method="post">
+      <form id="regiration_form" action="/pendaftaran/siswa/save" method="post">
+        {{ csrf_field() }}
           <!--form biodata-->
           <fieldset>
             <div class="form-group">
@@ -42,7 +43,7 @@
             </div>
             <div class="form-group">
               <label for="alamat">Alamat</label>
-              <input type="text" class="form-control" id="alamt" name="alamt">
+              <input type="text" class="form-control" id="alamat" name="alamat">
             </div>
             <div class="form-group">
               <label for="kota">Kota</label>
@@ -102,39 +103,50 @@
               <input type="text" class="form-control" id="re_password" name="re_password">
             </div>
             <button type="button" class="previous btn btn-default" name="button">Previous</button>
-            <button type="submit" class="next btn btn-success pull-right" name="button">Submit</button>
+            <button type="submit" class="submit btn btn-success pull-right" name="submit">Submit</button>
           </fieldset>
-        </form>
+      </form>
     </div>
   </div>
 @endsection
 
 @section('javascript')
+
   $(document).ready(function(){
-    var current = 1,current_step,next_step,steps;
-    steps = $("fieldset").length;
-    //console.log(steps);
-    $(".next").click(function(){
-      current_step = $(this).parent();
-      next_step = $(this).parent().next();
-      next_step.show();
-      current_step.hide();
-      setProgressBar(++current);
+      var current = 1,current_step,next_step,steps;
+      steps = $("fieldset").length;
+      //console.log(steps);
+      $(".next").click(function(){
+        current_step = $(this).closest("fieldset");
+        next_step = $(this).parent().next();
+        next_step.show();
+        current_step.hide();
+        setProgressBar(++current);
+      });
+      $(".previous").click(function(){
+        current_step = $(this).closest("fieldset");
+        next_step = $(this).parent().prev();
+        next_step.show();
+        current_step.hide();
+        setProgressBar(--current);
+      });
+
+      $('.submit').click(function(){
+        current_step = $(this).submit();
+      });
+
+      setProgressBar(current);
+      function setProgressBar(curStep) {
+        var percent = parseFloat(100 / steps) * curStep;
+        percent = percent.toFixed();
+        $(".progress-bar")
+          .css("width",percent+"%")
+          .html(percent+"%");
+      }
     });
-    $(".previous").click(function(){
-      current_step = $(this).parent();
-      next_step = $(this).parent().prev();
-      next_step.show();
-      current_step.hide();
-      setProgressBar(--current);
-    });
-    setProgressBar(current);
-    function setProgressBar(curStep) {
-      var percent = parseFloat(100 / steps) * curStep;
-      percent = percent.toFixed();
-      $(".progress-bar")
-        .css("width",percent+"%")
-        .html(percent+"%");
-    }
+
+  $('#tanggal_lahir').datepicker({
+    autoclose: true
   });
+
 @endsection
