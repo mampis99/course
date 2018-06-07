@@ -26,15 +26,16 @@ class LoginController extends Controller
                   ->join('m_siswa','r_login.id_user','=','m_siswa.id_siswa')
                   ->select('r_login.id_user','m_siswa.nm_siswa','r_login.username','r_login.password','r_login.role','r_login.status')
                   ->first();
-      dd($data);
+
       if (count($data)>0)
       {
         if (Hash::check($password, Hash::make($data->password)))
         {
           if ($data->role == "siswa")
           {
-            Session::put('id',$data->id_siswa);
+            Session::put('id',$data->id_user);
             Session::put('username',$data->username);
+            Session::put('nama',$data->nm_siswa);
             Session::put('password',$password);
             return redirect('/dashboard/siswa');
           }
@@ -45,9 +46,17 @@ class LoginController extends Controller
             //Session::put('password',$password);
             return "halaman guru";
           }
+          if ($data->role == "admin")
+          {
+            //Session::put('id',$data->id_siswa);
+            //Session::put('username',$data->username);
+            //Session::put('password',$password);
+            return "halaman admin";
+          }
         }
         else {
-          return "pass salah";
+          //password salah
+          return redirect('login');
         }
       }
       else
