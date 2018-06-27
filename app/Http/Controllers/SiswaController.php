@@ -104,7 +104,53 @@ class SiswaController extends Controller
 
     public function home()
     {
-
       return view('siswa/home');
+    }
+
+    public function paket()
+    {
+      $group_kelas = DB::table('m_group_kelas')
+                        ->where('status','=','AKTIF')
+                        ->select('id_group_kelas','nm_group_kelas')
+                        ->get();
+      $data_kelas = null;
+      //dd(count($data_kelas));
+      //d($jenis_paket);
+      return view('siswa/paket')->with([
+                                        'group_kelass'=>$group_kelas,
+                                        'data_kelass'=>$data_kelas
+                                      ]);
+    }
+
+    public function paket_jenis_cari(Request $request)
+    {
+      $group_kelas = DB::table('m_group_kelas')
+                        ->where('status','=','AKTIF')
+                        ->select('id_group_kelas','nm_group_kelas')
+                        ->get();
+
+      $id_group_kelas = $request->id_group_kelas;
+      $data_kelas = DB::table('r_det_kelas')
+                      ->where('r_det_kelas.id_group_kelas','=',$id_group_kelas)
+                      ->where('r_det_kelas.status','=','AKTIF')
+                      ->join('m_kelas','r_det_kelas.id_kelas','=','m_kelas.id_kelas')
+                      ->join('m_tingkat_mahir','r_det_kelas.id_tingkat_mahir','=','m_tingkat_mahir.id_tingkat_mahir')
+                      ->join('m_jenis_kelas','r_det_kelas.id_jenis_kelas','=','m_jenis_kelas.id_jenis_kelas')
+                      ->join('m_area','r_det_kelas.id_area','=','m_area.id_area')
+                      ->select('r_det_kelas.id_det_kelas','m_kelas.nm_kelas','m_tingkat_mahir.tingkat_mahir','m_jenis_kelas.nm_jenis_kelas','m_area.nm_area','r_det_kelas.id_gambar','r_det_kelas.harga')
+                      ->get();
+      //dd($data_kelas);
+      return view('siswa/paket')->with([
+                                        'group_kelass'=>$group_kelas,
+                                        'data_kelass'=>$data_kelas
+                                      ]);
+    }
+
+    public function paket_detail($id_pkt)
+    {
+      //dd($id_pkt);
+      return view('siswa/paket_detail')->with([
+                                                'id'=>$id_pkt
+                                              ]);
     }
 }

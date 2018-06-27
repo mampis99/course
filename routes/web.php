@@ -30,6 +30,11 @@ Route::post('/pendaftaran/siswa/save','SiswaController@pendaftaran_siswa_save');
 
 //dashboard siswa
 Route::get('/dashboard/siswa','SiswaController@home');
+Route::get('/dashboard/siswa/paket/','SiswaController@paket');
+Route::post('/dashboard/siswa/paket/jenis/cari','SiswaController@paket_jenis_cari');
+Route::get('/dashboard/siswa/paket/id={id_pkt}','SiswaController@paket_detail');
+
+
 
 
 //pendaftaran guru
