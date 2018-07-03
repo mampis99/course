@@ -32,8 +32,8 @@ Route::post('/pendaftaran/siswa/save','SiswaController@pendaftaran_siswa_save');
 Route::get('/dashboard/siswa','SiswaController@home');
 Route::get('/dashboard/siswa/paket/','SiswaController@paket');
 Route::post('/dashboard/siswa/paket/jenis/cari','SiswaController@paket_jenis_cari');
-Route::get('/dashboard/siswa/paket/id={id_pkt}','SiswaController@paket_detail');
-
+Route::get('/dashboard/siswa/kelas/id={id_kls}','SiswaController@lihat_kelas');
+Route::get('/dashboard/siswa/kelas/detail/id={id_kls}','SiswaController@detail_kelas');
 
 
 

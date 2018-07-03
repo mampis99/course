@@ -28,10 +28,10 @@
                     <table>
                       <tr>
                         <td style="width : 74%">
-                          <select class="form-control" name="id_group_kelas" id="InputGroupKelas">
+                          <select class="form-control" name="id_group" id="InputGroup">
                               <option value="">PILIH JENIS PAKET</option>
-                            @foreach ($group_kelass as $group_kelas)
-                              <option value="{{ $group_kelas->id_group_kelas }}">{{ $group_kelas->nm_group_kelas }}</option>
+                            @foreach ($group_pakets as $group_paket)
+                              <option value="{{ $group_paket->id_group }}">{{ $group_paket->nm_group }}</option>
                             @endforeach
                           </select>
                         </td>
@@ -49,29 +49,33 @@
       </div>
       <div class="row">
         <div class="">
-          @if (count($data_kelass)>0)
-            @foreach ($data_kelass as $data_kelas)
+          @if (count($data_pakets)>0)
+            @foreach ($data_pakets as $data_paket)
               <div class="col-md-4">
                 <div class="box box-solid">
                   <div class="box-header with-border">
                     <i class="fa fa-diamond"></i>
-                    <h4 class="box-title">{{ $data_kelas->nm_kelas }}</h3>
+                    <h4 class="box-title">{{ $data_paket->nm_paket }}</h3>
                   </div>
                   <div class="box-body">
-                    <img class="img-responsive" src="{{ URL::asset('img') }}/{{ $data_kelas->id_gambar }}" alt="Photo">
+                    <img class="img-responsive" src="{{ URL::asset('img') }}/{{ $data_paket->img_paket }}" alt="Photo">
                     <br>
                     <table>
                       <tr>
-                        <td><label>Tingkat : {{ $data_kelas->tingkat_mahir }}</label></td>
+                        <td><label>Tingkat</label></td>
+                        <td> : </td>
+                        <td>{{ $data_paket->tingkat_mahir }}</td>
                       </tr>
                       <tr>
-                        <td><i class="fa fa-map-marker" style="margin-right : 5px;"></i><label>{{ $data_kelas->nm_area }}</label></td>
+                        <td><i class="fa fa-map-marker" style="margin-right : 5px;"></i><label>....</label></td>
                       </tr>
                       <tr>
-                        <td><label>Harga : Rp {{ number_format($data_kelas->harga) }}</label></td>
+                        <td><label>Mulai Harga</label></td>
+                        <td> : </td>
+                        <td>Rp {{ number_format($data_paket->min_harga) }}</td>
                       </tr>
                     </table>
-                    <a class="btn btn-primary btn-block" href="{{'/dashboard/siswa/paket/id='}}{{$data_kelas->id_det_kelas}}">Lihat Detail</a>
+                    <a class="btn btn-primary btn-block" href="{{'/dashboard/siswa/kelas/id='}}{{$data_paket->id_paket}}">Lihat Kelas</a>
                   </div>
                 </div>
               </div>

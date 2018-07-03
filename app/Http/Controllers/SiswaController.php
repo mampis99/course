@@ -109,48 +109,65 @@ class SiswaController extends Controller
 
     public function paket()
     {
-      $group_kelas = DB::table('m_group_kelas')
+      $group_paket = DB::table('m_group_paket')
                         ->where('status','=','AKTIF')
-                        ->select('id_group_kelas','nm_group_kelas')
+                        ->select('id_group','nm_group')
                         ->get();
-      $data_kelas = null;
+      $data_paket = null;
       //dd(count($data_kelas));
       //d($jenis_paket);
       return view('siswa/paket')->with([
-                                        'group_kelass'=>$group_kelas,
-                                        'data_kelass'=>$data_kelas
+                                        'group_pakets'=>$group_paket,
+                                        'data_pakets'=>$data_paket
                                       ]);
     }
 
     public function paket_jenis_cari(Request $request)
     {
-      $group_kelas = DB::table('m_group_kelas')
+      $group_paket = DB::table('m_group_paket')
                         ->where('status','=','AKTIF')
-                        ->select('id_group_kelas','nm_group_kelas')
+                        ->select('id_group','nm_group')
                         ->get();
 
-      $id_group_kelas = $request->id_group_kelas;
-      $data_kelas = DB::table('r_det_kelas')
-                      ->where('r_det_kelas.id_group_kelas','=',$id_group_kelas)
-                      ->where('r_det_kelas.status','=','AKTIF')
-                      ->join('m_kelas','r_det_kelas.id_kelas','=','m_kelas.id_kelas')
-                      ->join('m_tingkat_mahir','r_det_kelas.id_tingkat_mahir','=','m_tingkat_mahir.id_tingkat_mahir')
-                      ->join('m_jenis_kelas','r_det_kelas.id_jenis_kelas','=','m_jenis_kelas.id_jenis_kelas')
-                      ->join('m_area','r_det_kelas.id_area','=','m_area.id_area')
-                      ->select('r_det_kelas.id_det_kelas','m_kelas.nm_kelas','m_tingkat_mahir.tingkat_mahir','m_jenis_kelas.nm_jenis_kelas','m_area.nm_area','r_det_kelas.id_gambar','r_det_kelas.harga')
+      $id_group = $request->id_group;
+      //dd($id_group);
+      $data_paket = DB::table('r_paket')
+                      ->where('r_paket.id_group','=',$id_group)
+                      ->where('r_paket.status','=','AKTIF')
+                      ->join('m_tingkat_mahir','r_paket.id_tingkat_mahir','=','m_tingkat_mahir.id_tingkat_mahir')
+                      ->select('r_paket.id_paket','r_paket.nm_paket','r_paket.img_paket','r_paket.min_harga',
+                               'm_tingkat_mahir.tingkat_mahir')
                       ->get();
-      //dd($data_kelas);
+      //dd($data_paket);
       return view('siswa/paket')->with([
-                                        'group_kelass'=>$group_kelas,
-                                        'data_kelass'=>$data_kelas
+                                        'group_pakets'=>$group_paket,
+                                        'data_pakets'=>$data_paket
                                       ]);
     }
 
-    public function paket_detail($id_pkt)
+    public function lihat_kelas($id_kls)
     {
-      //dd($id_pkt);
-      return view('siswa/paket_detail')->with([
-                                                'id'=>$id_pkt
-                                              ]);
+      $data_kelas = DB::table('r_kelas')
+                        ->where('r_kelas.id_paket','=',$id_kls)
+                        ->join('m_jenis_kelas','r_kelas.id_jenis_kelas','=','m_jenis_kelas.id_jenis_kelas')
+                        ->join('m_area','r_kelas.id_area','=','m_area.id_area')
+                        ->select('r_kelas.id_kelas','r_kelas.nm_kelas','r_kelas.level','r_kelas.harga',
+                                 'm_jenis_kelas.nm_jenis_kelas',
+                                 'm_area.nm_area')
+                        ->get();
+
+      //dd($data_kelas);
+      return view('siswa/kelas')->with([
+                                        'data_kelasm'=>$data_kelas
+                                      ]);
+    }
+
+    public function detail_kelas($id_kls)
+    {
+      $detail_kelas = DB::table('r_kelas')
+                          ->where('r_kelas.id_kelas','=',$id_kls)
+                          ->where('status','=','AKTIF')
+                          ->get();
+      dd($detail_kelas);
     }
 }

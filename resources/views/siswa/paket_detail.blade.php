@@ -20,7 +20,7 @@
         <div class="col-md-6">
           <div class="box box-primary">
             <div class="box-body">
-              <img class="img-responsive" src="{{ URL::asset('img') }}/..." alt="Photo">
+              <img class="img-responsive" src="{{ URL::asset('img') }}/{{ $detail_kelas->id_gambar }}" alt="Photo">
             </div>
           </div>
           <div class="box box-info">
@@ -47,8 +47,8 @@
               <div class="tab-content">
                 <div class="tab-pane active" id="tab_1">
 
-                  <b>Nama Paket ...</b><br>
-                  <p>...Keterangan...</p>
+                  <b>{{ $detail_kelas->nm_kelas }}</b><br>
+                  <p>{{ $detail_kelas->ket }}</p>
                   <b>Detail Kursus</b>
 
                   <table style="width: 65%;">
@@ -59,24 +59,24 @@
                         <td> ... Gelombang</td>
                       </tr>
                       <tr>
-                        <td>Level </td>
+                        <td>Tingkat </td>
                         <td> : </td>
-                        <td>Level</td>
+                        <td>{{ $detail_kelas->tingkat_mahir }}</td>
                       </tr>
                       <tr>
                         <td>Total Pertemuan </td>
                         <td> : </td>
-                        <td> x Pertemuan</td>
+                        <td>{{ $detail_kelas->jml_pertemuan }} x </td>
                       </tr>
                       <tr>
                         <td>Harga </td>
                         <td> : </td>
-                        <td>Rp ...</td>
+                        <td>Rp {{ number_format($detail_kelas->harga) }}</td>
                       </tr>
                       <tr>
                         <td>Angsuran </td>
                         <td> : </td>
-                        <td>Rp ... X 2 </td>
+                        <td>{{ $detail_kelas->cicilan }} X</td>
                       </tr>
                     </tbody>
                   </table>
