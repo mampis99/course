@@ -166,8 +166,126 @@ class SiswaController extends Controller
     {
       $detail_kelas = DB::table('r_kelas')
                           ->where('r_kelas.id_kelas','=',$id_kls)
-                          ->where('status','=','AKTIF')
-                          ->get();
-      dd($detail_kelas);
+                          ->where('r_kelas.status','=','AKTIF')
+                          ->join('m_area','r_kelas.id_area','=','m_area.id_area')
+                          ->join('m_jenis_kelas','r_kelas.id_jenis_kelas','=','m_jenis_kelas.id_jenis_kelas')
+                          ->join('r_paket','r_kelas.id_paket','=','r_paket.id_paket')
+                          ->join('m_tingkat_mahir','r_paket.id_tingkat_mahir','=','m_tingkat_mahir.id_tingkat_mahir')
+                          ->first();
+      //dd($detail_kelas);
+      $jadwal_kelas = DB::table('r_jadwal_kelas')
+                        ->where('r_jadwal_kelas.id_kelas','=',$id_kls)
+                        ->get();
+
+      $jumlah_jadwal = DB::table('r_jadwal_kelas')
+                        ->where('r_jadwal_kelas.id_kelas','=',$id_kls)
+                        ->count();
+
+      //dd($jumlah_jadwal);
+      return view('siswa/detail_kelas')->with([
+                                            'detail_kelas'=>$detail_kelas,
+                                            'jadwal_kelasm'=>$jadwal_kelas,
+                                            'jumlah_jadwal'=>$jumlah_jadwal
+                                          ]);
+    }
+
+    public function kelas_save(Request $request, $id_kls)
+    {
+      $max_kelas_siswa = DB::table('r_kelas_siswa')->max('id_kelas_siswa');
+      $tahun_ini = date('Y');
+      $bulan_ini = date('m');
+      $char1 = "MRC";
+      $char2 = "KLS";
+      $status = "OPN";
+      $tanggal_daftar = date('Y-m-d');
+
+      //dd($max_kelas_siswa);
+
+      if (count($max_kelas_siswa)==0) {
+        $id_kelas_siswa = $char1."/".$char2."/".$tahun_ini."/".$bulan_ini."/".sprintf('%04s',1);
+      }
+      else {
+        $get_nomor = explode("/",$max_kelas_siswa);
+        $nomor_urut = $get_nomor[4]+1;
+        $id_kelas_siswa = $char1."/".$char2."/".$tahun_ini."/".$bulan_ini."/".sprintf('%04s',$nomor_urut);
+      }
+
+      $username = Session::get('username');
+
+      $id_siswa = DB::table('r_login')
+                      ->where('r_login.username','=',$username)
+                      ->where('r_login.role','=','siswa')
+                      ->where('r_login.status','=',1)
+                      ->select('r_login.id_user')
+                      ->first();
+      //dd($id_siswa);
+
+      DB::table('r_kelas_siswa')->insert([
+                                          [
+                                            'id_kelas_siswa'=>$id_kelas_siswa,
+                                            'id_siswa'=>$id_siswa->id_user,
+                                            'id_kelas'=>$id_kls,
+                                            'id_jdw_kelas'=>$request['jam_hari'],
+                                            'metode_bayar'=>$request['metode_bayar'],
+                                            'status'=>$status,
+                                            'created_date'=>$tanggal_daftar
+                                          ]
+                                        ]);
+        return redirect('/dashboard/siswa/paket');
+    }
+
+    public function kelas_siswa()
+    {
+      $username = Session::get('username');
+
+      $id_siswa = DB::table('r_login')
+                      ->where('r_login.username','=',$username)
+                      ->where('r_login.role','=','siswa')
+                      ->where('r_login.status','=',1)
+                      ->select('r_login.id_user')
+                      ->first();
+
+      $ambil_kelas = DB::table('r_kelas_siswa')
+                        ->where('r_kelas_siswa.id_siswa','=',$id_siswa->id_user)
+                        ->join('r_kelas','r_kelas_siswa.id_kelas','=','r_kelas.id_kelas')
+                        ->join('r_paket','r_kelas.id_paket','=','r_paket.id_paket')
+                        ->join('m_tingkat_mahir','r_paket.id_tingkat_mahir','=','m_tingkat_mahir.id_tingkat_mahir')
+                        ->join('m_area','r_kelas.id_area','=','m_area.id_area')
+                        ->join('m_jenis_kelas','r_kelas.id_jenis_kelas','=','m_jenis_kelas.id_jenis_kelas')
+                        ->select('r_kelas_siswa.id_kelas_siswa',
+                                 'r_kelas.nm_kelas','r_kelas.level',
+                                 'm_area.nm_area',
+                                 'm_tingkat_mahir.tingkat_mahir',
+                                 'm_jenis_kelas.nm_jenis_kelas')
+                        ->get();
+
+      //dd($ambil_kelas);
+
+      return View('siswa/kelas_ambil')->with([
+                                              'ambil_kelasm'=>$ambil_kelas
+                                            ]);
+    }
+
+    public function jadwal_siswa()
+    {
+      $username = Session::get('username');
+
+      $id_siswa = DB::table('r_login')
+                      ->where('r_login.username','=',$username)
+                      ->where('r_login.role','=','siswa')
+                      ->where('r_login.status','=',1)
+                      ->select('r_login.id_user')
+                      ->first();
+
+      $jadwal_siswa = DB::table('r_kelas_siswa')
+                        ->where('r_kelas_siswa.id_siswa','=',$id_siswa->id_user)
+                        ->where('r_jadwal_siswa.status','=','AKTIF')
+                        ->join('r_jadwal_siswa','r_kelas_siswa.id_kelas_siswa','=','r_jadwal_siswa.id_kelas_siswa')
+                        ->get();
+
+      //dd($jadwal_siswa);
+      return View('siswa/jadwal_siswa')->with([
+                                                'jadwal_siswam'=>$jadwal_siswa
+                                              ]);
     }
 }

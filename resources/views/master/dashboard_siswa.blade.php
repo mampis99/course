@@ -169,9 +169,9 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MENU</li>
         <li><a href="/dashboard/siswa/paket"><i class="fa fa-circle-o text-yellow"></i> <span>Paket</span></a></li>
-        <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Kelas</span></a></li>
+        <li><a href="/dashboard/siswa/kelas/ambil"><i class="fa fa-circle-o text-aqua"></i> <span>Kelas</span></a></li>
         <li><a href="{{ '/siswa/absensi' }}"><i class="fa fa-circle-o text-aqua"></i> <span>Absensi</span></a></li>
-        <li><a href="{{'/siswa/jadwal'}}"><i class="fa fa-circle-o text-aqua"></i> <span>Jadwal Kursus</span></a></li>
+        <li><a href="/dashboard/siswa/jadwal"><i class="fa fa-circle-o text-aqua"></i> <span>Jadwal Kursus</span></a></li>
         <li><a href="{{'/siswa/nilai'}}"><i class="fa fa-circle-o text-aqua"></i> <span>Nilai Hasil Belajar</span></a></li>
         <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Pembayaran</span></a></li>
         <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Sertifikat</span></a></li>

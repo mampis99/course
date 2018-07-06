@@ -46,9 +46,9 @@
                       <td>{{ $data_kelas->level }}</td>
                       <td>{{ $data_kelas->nm_jenis_kelas }}</td>
                       <td>{{ $data_kelas->nm_area }}</td>
-                      <td>{{ $data_kelas->harga }}</td>
+                      <td>Rp. {{ number_format($data_kelas->harga) }}</td>
                       <td>
-                        <a class="btn btn-info btn-sm" href="{{'/dashboard/siswa/kelas/detail/id='}}{{$data_kelas->id_kelas}}">Detail Kelas</a>
+                        <a class="btn btn-info" href="{{'/dashboard/siswa/kelas/detail/id='}}{{$data_kelas->id_kelas}}">Detail Kelas</a>
                       </td>
                     </tr>
                   @endforeach
