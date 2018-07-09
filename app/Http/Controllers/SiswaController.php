@@ -283,9 +283,63 @@ class SiswaController extends Controller
                         ->join('r_jadwal_siswa','r_kelas_siswa.id_kelas_siswa','=','r_jadwal_siswa.id_kelas_siswa')
                         ->get();
 
-      //dd($jadwal_siswa);
+      //date_default_timezone_set('Asia/Jakarta');
+      //$tanggal1 = date('Y-m-d H:i:s');
+      //$tanggal2 = date('Y-m-d H:i:s', strtotime('2017-07-06 10:18:00'));
+
+      //$se = date('Y-m-d H:i:s', strtotime($tanggal1 - $tanggal2));
+
+      //dd($se);
       return View('siswa/jadwal_siswa')->with([
                                                 'jadwal_siswam'=>$jadwal_siswa
                                               ]);
     }
+
+    public function absensi_siswa()
+    {
+      $username = Session::get('username');
+
+      $absensi_siswa = DB::table('r_login')
+                      ->where('r_login.username','=',$username)
+                      ->where('r_login.role','=','siswa')
+                      ->where('r_kelas_siswa.status','=','AKTIF')
+                      ->where('r_login.status','=',1)
+                      ->join('r_kelas_siswa','r_login.id_user','=','r_kelas_siswa.id_siswa')
+                      ->join('r_absen_siswa','r_kelas_siswa.id_kelas_siswa','=','r_absen_siswa.id_kelas_siswa')
+                      //->select('r_login.id_user',
+                      //         'r_kelas_siswa.id_kelas_siswa')
+                      ->get();
+
+      //dd($absensi_siswa);
+      //$absensi_siswa = DB::table('r_absen_siswa')
+      //                    ->where('r_absen_siswa.id_siswa','=',$id->id_user)
+      //                    ->where('r_absen_siswa.id_kelas_siswa','=',$id->id_kelas_siswa)
+      //                    ->select('r_absen_siswa.id_kelas_siswa','r_absen_siswa.id_siswa','r_absen_siswa.ket','r_absen_siswa.pertemuan','r_absen_siswa.tanggal')
+      //                    ->get();
+
+      return view('siswa/absensi_siswa')->with([
+                                                'absensi_siswam'=>$absensi_siswa
+                                              ]);
+    }
+
+    public function nilai_siswa()
+    {
+      $username = Session::get('username');
+      $nilai_siswa = DB::table('r_login')
+                      ->where('r_login.username','=',$username)
+                      ->where('r_login.role','=','siswa')
+                      ->where('r_login.status','=',1)
+                      ->where('r_kelas_siswa.status','=','AKTIF')
+                      ->join('r_kelas_siswa','r_login.id_user','=','r_kelas_siswa.id_siswa')
+                      ->join('r_report_ujian','r_kelas_siswa.id_kelas_siswa','=','r_report_ujian.id_kelas_siswa')
+                      //->select('r_login.id_user',
+                      //         'r_kelas_siswa.id_kelas_siswa')
+                      ->get();
+
+      dd($nilai_siswa);
+      return view('siswa/nilai_siswa')->with([
+                                              'nilai_siswam'=>$nilai_siswa
+                                            ]);
+    }
+
 }

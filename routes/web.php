@@ -37,6 +37,8 @@ Route::get('/dashboard/siswa/kelas/detail/id={id_kls}','SiswaController@detail_k
 Route::post('/dashboard/siswa/kelas/detail/id={id_kls}','SiswaController@kelas_save');
 Route::get('/dashboard/siswa/kelas/ambil','SiswaController@kelas_siswa');
 Route::get('/dashboard/siswa/jadwal','SiswaController@jadwal_siswa');
+Route::get('/dashboard/siswa/absensi','SiswaController@absensi_siswa');
+Route::get('/dashboard/siswa/nilai','SiswaController@nilai_siswa');
 
 //pendaftaran guru
 Route::get('/pendaftaran/guru', function () {

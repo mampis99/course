@@ -26,7 +26,9 @@
               <table class="table table-hover">
                 <tr>
                   <th>No</th>
+                  <th>Id Kelas</th>
                   <th>Id Guru</th>
+                  <th>Pertemuan</th>
                   <th>Keterangan</th>
                   <th>Tanggal</th>
                   <th>Jam</th>
@@ -37,7 +39,9 @@
                 @foreach ($jadwal_siswam as $jadwal_siswa)
                   <tr>
                     <td>{{ $no++ }}</td>
+                    <td>{{ $jadwal_siswa->id_kelas_siswa }}</td>
                     <td>{{ $jadwal_siswa->id_guru }}</td>
+                    <td>ke - {{ $jadwal_siswa->pertemuan }}</td>
                     <td>{{ $jadwal_siswa->ket }}</td>
                     <td>{{ $jadwal_siswa->tanggal }}</td>
                     <td>{{ $jadwal_siswa->jam }}</td>
