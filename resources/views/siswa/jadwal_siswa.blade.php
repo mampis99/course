@@ -27,6 +27,7 @@
                 <tr>
                   <th>No</th>
                   <th>Id Kelas</th>
+                  <th>Nama Kelas</th>
                   <th>Id Guru</th>
                   <th>Pertemuan</th>
                   <th>Keterangan</th>
@@ -40,11 +41,12 @@
                   <tr>
                     <td>{{ $no++ }}</td>
                     <td>{{ $jadwal_siswa->id_kelas_siswa }}</td>
+                    <td>{{ $jadwal_siswa->nm_kelas }}</td>
                     <td>{{ $jadwal_siswa->id_guru }}</td>
                     <td>ke - {{ $jadwal_siswa->pertemuan }}</td>
                     <td>{{ $jadwal_siswa->ket }}</td>
-                    <td>{{ $jadwal_siswa->tanggal }}</td>
-                    <td>{{ $jadwal_siswa->jam }}</td>
+                    <td>{{ date('Y-m-d', strtotime($jadwal_siswa->tanggal)) }}</td>
+                    <td>{{ date('H:i', strtotime($jadwal_siswa->tanggal)) }}</td>
                   </tr>
                 @endforeach
               </table>

@@ -281,6 +281,7 @@ class SiswaController extends Controller
                         ->where('r_kelas_siswa.id_siswa','=',$id_siswa->id_user)
                         ->where('r_jadwal_siswa.status','=','AKTIF')
                         ->join('r_jadwal_siswa','r_kelas_siswa.id_kelas_siswa','=','r_jadwal_siswa.id_kelas_siswa')
+                        ->join('r_kelas','r_kelas_siswa.id_kelas','=','r_kelas.id_kelas')
                         ->get();
 
       //date_default_timezone_set('Asia/Jakarta');
@@ -331,15 +332,39 @@ class SiswaController extends Controller
                       ->where('r_login.status','=',1)
                       ->where('r_kelas_siswa.status','=','AKTIF')
                       ->join('r_kelas_siswa','r_login.id_user','=','r_kelas_siswa.id_siswa')
+                      ->join('r_kelas','r_kelas_siswa.id_kelas','=','r_kelas.id_kelas')
                       ->join('r_report_ujian','r_kelas_siswa.id_kelas_siswa','=','r_report_ujian.id_kelas_siswa')
+                      ->join('r_modul_ujian','r_report_ujian.id_modul_ujian','=','r_modul_ujian.id_modul_ujian')
                       //->select('r_login.id_user',
                       //         'r_kelas_siswa.id_kelas_siswa')
                       ->get();
 
-      dd($nilai_siswa);
+      //dd($nilai_siswa);
       return view('siswa/nilai_siswa')->with([
                                               'nilai_siswam'=>$nilai_siswa
                                             ]);
+    }
+
+    public function pembayaran()
+    {
+      $username = Session::get('username');
+      $pembayaran = DB::table('r_login')
+                      ->where('r_login.username','=',$username)
+                      ->where('r_login.role','=','siswa')
+                      ->where('r_login.status','=',1)
+                      ->where('r_siswa_pembayaran.status','=','AKTIF')
+                      ->join('r_siswa_pembayaran','r_login.id_user','=','r_siswa_pembayaran.id_siswa')
+                      ->get();
+
+      //dd($pembayaran);
+      return view('siswa/pembayaran')->with([
+                                              'pembayarans'=>$pembayaran
+                                          ]);
+    }
+
+    public function testimoni()
+    {
+      return view('siswa/testimoni');
     }
 
 }

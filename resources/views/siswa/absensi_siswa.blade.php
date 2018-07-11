@@ -42,7 +42,8 @@
                   <th>Id_Kelas</th>
                   <th>Keterangan</th>
                   <th>Pertemuan</th>
-                  <th>Tanggal dan Jam</th>
+                  <th>Tanggal</th>
+                  <th>Jam</th>
                   <th>Selisih Waktu</th>
                 </tr>
                 @php
@@ -54,8 +55,9 @@
                       <td>{{ $absensi_siswa->id_kelas_siswa }}</td>
                       <td>{{ $absensi_siswa->ket }}</td>
                       <td>ke - {{ $absensi_siswa->pertemuan }}</td>
-                      <td>{{ $absensi_siswa->tanggal }}</td>
-                      <td> </td>
+                      <td>{{ date('Y-m-d', strtotime($absensi_siswa->tanggal)) }}</td>
+                      <td>{{ date('H:i:s', strtotime($absensi_siswa->tanggal)) }}</td>
+                      <td> - </td>
                     </tr>
                   @endforeach
               </table>

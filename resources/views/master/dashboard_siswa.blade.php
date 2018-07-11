@@ -173,9 +173,9 @@
         <li><a href="/dashboard/siswa/jadwal"><i class="fa fa-circle-o text-aqua"></i> <span>Jadwal Kursus</span></a></li>
         <li><a href="/dashboard/siswa/absensi"><i class="fa fa-circle-o text-aqua"></i> <span>Absensi</span></a></li>
         <li><a href="/dashboard/siswa/nilai"><i class="fa fa-circle-o text-aqua"></i> <span>Nilai</span></a></li>
-        <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Pembayaran</span></a></li>
+        <li><a href="/dashboard/siswa/pembayaran"><i class="fa fa-circle-o text-aqua"></i> <span>Pembayaran</span></a></li>
         <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Sertifikat</span></a></li>
-        <li><a href="{{ '/siswa/testimoni' }}"><i class="fa fa-circle-o text-aqua"></i> <span>Testimoni</span></a></li>
+        <li><a href="{{ '/dashboard/siswa/testimoni' }}"><i class="fa fa-circle-o text-aqua"></i> <span>Testimoni</span></a></li>
       </ul>
     </section>
     <!-- /.sidebar -->
