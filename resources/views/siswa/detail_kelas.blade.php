@@ -138,6 +138,11 @@
             <form class="form-horizontal" action="{{url()->current()}}" method="POST">
               {{ csrf_field() }}
               <div class="box-body">
+                @if (count($btn)>0)
+                  <div class="alert alert-info">
+                    <strong>Info!</strong> Anda sudah memilih kelas tersebut.
+                  </div>
+                @endif
                 <div class="form-group">
                   <label for="inputArea" class="col-sm-5 control-label">Area</label>
                   <div class="col-sm-6">
@@ -176,7 +181,7 @@
 
               </div>
               <div class="box-footer">
-                <button type="submit" class="btn btn-info pull-right">OK</button>
+                <button type="button" class="btn btn-info pull-right" disabled="{{ $btn }}">OK</button>
               </div>
             </form>
           </div>

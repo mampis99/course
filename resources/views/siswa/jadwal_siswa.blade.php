@@ -59,7 +59,7 @@
           <div class="box">
             <div class="box-body">
               <p>Info :</p>
-              <p>...</p>
+              <p>Jika jadwal belum muncul harap selesaikan pembayaran atau membayar Cicilan ke - 1 dulu.</p>
             </div>
           </div>
         </div>

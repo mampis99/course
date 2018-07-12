@@ -181,11 +181,29 @@ class SiswaController extends Controller
                         ->where('r_jadwal_kelas.id_kelas','=',$id_kls)
                         ->count();
 
-      //dd($jumlah_jadwal);
+      //Cek apakah sudah ambil kelas yg sama
+      $username = Session::get('username');
+      $cek_kelas = DB::table('r_login')
+                      ->where('r_login.username','=',$username)
+                      ->where('r_kelas_siswa.id_kelas','=',$id_kls)
+                      ->join('r_kelas_siswa','r_login.id_user','=','r_kelas_siswa.id_siswa')
+                      ->select('r_kelas_siswa.id_kelas')
+                      ->first();
+
+      if (count($cek_kelas)>0) {
+        $btn = "disabled";
+      }
+      else {
+        $btn = "";
+      }
+
+      //dd(count($btn));
+
       return view('siswa/detail_kelas')->with([
                                             'detail_kelas'=>$detail_kelas,
                                             'jadwal_kelasm'=>$jadwal_kelas,
-                                            'jumlah_jadwal'=>$jumlah_jadwal
+                                            'jumlah_jadwal'=>$jumlah_jadwal,
+                                            'btn'=>$btn
                                           ]);
     }
 
@@ -365,6 +383,41 @@ class SiswaController extends Controller
     public function testimoni()
     {
       return view('siswa/testimoni');
+    }
+
+    public function testimoni_post(Request $request)
+    {
+      $this->validate($request,[
+                          'testimoni'=>'required'
+                      ]);
+
+      $username = Session::get('username');
+      $isi_testimoni = $request->testimoni;
+
+      date_default_timezone_set('Asia/Jakarta');
+      $created_date = date('Y-m-d H:i:s');
+
+      $id_siswa = DB::table('r_login')
+                        ->where('r_login.username','=',$username)
+                        ->where('r_login.status','=',1)
+                        ->where('r_login.role','=','siswa')
+                        ->select('r_login.id_user')
+                        ->first();
+
+      //dd($tanggal_daftar);
+      if (count($id_siswa)>0) {
+        DB::table('r_testimoni')->insert([
+                                        ['id_siswa'=>$id_siswa->id_user,
+                                          'isi_testimoni'=>$isi_testimoni,
+                                          'status'=>"OPN",
+                                          'created_date'=>$created_date
+                                        ]
+                                      ]);
+        return redirect('/dashboard/siswa/testimoni');
+      }
+      else {
+        return redirect('/login');
+      }
     }
 
 }
