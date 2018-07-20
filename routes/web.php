@@ -51,4 +51,8 @@ Route::get('/pendaftaran/guru', function () {
 
 //dashboard guru
 
+
+
+
 //dashboard admin
+Route::get('/dashboard/admin','AdminController@home');

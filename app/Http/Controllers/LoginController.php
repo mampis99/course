@@ -20,11 +20,13 @@ class LoginController extends Controller
       $password = $request->password;
 
       //dd($username." ".$password);
+      //data loin revisi
       $data = DB::table('r_login')
                   ->where('r_login.status','=',1)
                   ->where('r_login.username','=',$username)
                   ->join('m_siswa','r_login.id_user','=','m_siswa.id_siswa')
-                  ->select('r_login.id_user','m_siswa.nm_siswa','r_login.username','r_login.password','r_login.role','r_login.status')
+                  ->join('m_guru','r_login.id_user','=','m_guru.id_guru')
+                  ->select('r_login.id_user','m_siswa.nm_siswa','m_guru.nm_guru','r_login.username','r_login.password','r_login.role','r_login.status')
                   ->first();
 
       if (count($data)>0)
@@ -51,7 +53,7 @@ class LoginController extends Controller
             //Session::put('id',$data->id_siswa);
             //Session::put('username',$data->username);
             //Session::put('password',$password);
-            return "halaman admin";
+            return redirect('/dashboard/admin');
           }
         }
         else {
