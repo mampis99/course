@@ -64,6 +64,11 @@
                         <td>{{ $detail_kelas->tingkat_mahir }}</td>
                       </tr>
                       <tr>
+                        <td>Level</td>
+                        <td>:</td>
+                        <td>{{ $detail_kelas->level }}</td>
+                      </tr>
+                      <tr>
                         <td>Jenis Kelas</td>
                         <td> : </td>
                         <td>{{ $detail_kelas->nm_jenis_kelas }}</td>
@@ -138,11 +143,13 @@
             <form class="form-horizontal" action="{{url()->current()}}" method="POST">
               {{ csrf_field() }}
               <div class="box-body">
+
                 @if (count($btn)>0)
                   <div class="alert alert-info">
                     <strong>Info!</strong> Anda sudah memilih kelas tersebut.
                   </div>
                 @endif
+              
                 <div class="form-group">
                   <label for="inputArea" class="col-sm-5 control-label">Area</label>
                   <div class="col-sm-6">
@@ -181,7 +188,7 @@
 
               </div>
               <div class="box-footer">
-                <button type="button" class="btn btn-info pull-right" disabled="{{ $btn }}">OK</button>
+                <button type="submit" class="btn btn-info pull-right" {{ $btn }}>OK</button>
               </div>
             </form>
           </div>

@@ -39,7 +39,7 @@
               <table class="table table-hover">
                 <tr>
                   <th>No</th>
-                  <th>Id_Kelas</th>
+                  <th>Kode Kelas</th>
                   <th>Keterangan</th>
                   <th>Pertemuan</th>
                   <th>Tanggal</th>

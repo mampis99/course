@@ -43,7 +43,10 @@
     <!-- Logo -->
     <a href="/dashboard/siswa" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>M</b>CL</span>
+      <!--<span class="logo-mini"><b>M</b>CL</span>-->
+      <span class="logo-mini">
+        <img src="{{URL::asset('img/m.png')}}" class="img-circle" alt="logo">
+      </span>
       <!-- logo for regular state and mobile devices -->
       <span class="logo-lg"><b>MERACHEL</b> </span>
     </a>
@@ -145,7 +148,7 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="{{'/siswa/profil'}}" class="btn btn-default btn-flat">Profile</a>
+                  <a href="/dashboard/siswa/profile" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
                   <a href="{{'/logout'}}" class="btn btn-default btn-flat">Logout</a>
@@ -174,6 +177,7 @@
         <li><a href="/dashboard/siswa/absensi"><i class="fa fa-circle-o text-aqua"></i> <span>Absensi</span></a></li>
         <li><a href="/dashboard/siswa/nilai"><i class="fa fa-circle-o text-aqua"></i> <span>Nilai</span></a></li>
         <li><a href="/dashboard/siswa/pembayaran"><i class="fa fa-circle-o text-aqua"></i> <span>Pembayaran</span></a></li>
+        <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Modul</span></a></li>
         <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Sertifikat</span></a></li>
         <li><a href="{{ '/dashboard/siswa/testimoni' }}"><i class="fa fa-circle-o text-aqua"></i> <span>Testimoni</span></a></li>
       </ul>

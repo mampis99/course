@@ -43,7 +43,7 @@ class SiswaController extends Controller
       $tahun_ini = date('Y');
       $bulan_ini = date('m');
       $char1 = "MRC";
-      $char2 = "DFT";
+      $char2 = "SW";
       $status = "OPN";
       $tanggal_daftar = date('Y-m-d');
       $convert_date = date('Y-m-d',strtotime($request['tanggal_lahir']));
@@ -105,6 +105,21 @@ class SiswaController extends Controller
     public function home()
     {
       return view('siswa/home');
+    }
+
+    public function profile_siswa()
+    {
+      $username = Session::get('username');
+      $biodata = DB::table('r_login')
+                    ->where('r_login.username','=',$username)
+                    ->join('m_siswa','r_login.id_user','=','m_siswa.id_siswa')
+                    ->join('r_orangtua','m_siswa.id_siswa','=','r_orangtua.id_user')
+                    ->first();
+
+      //dd($biodata);
+      return view('siswa/profile_siswa')->with([
+                                                'biodata'=>$biodata
+                                              ]);
     }
 
     public function paket()
@@ -300,6 +315,8 @@ class SiswaController extends Controller
                         ->where('r_jadwal_siswa.status','=','AKTIF')
                         ->join('r_jadwal_siswa','r_kelas_siswa.id_kelas_siswa','=','r_jadwal_siswa.id_kelas_siswa')
                         ->join('r_kelas','r_kelas_siswa.id_kelas','=','r_kelas.id_kelas')
+                        ->select('r_jadwal_siswa.id_kelas_siswa','r_jadwal_siswa.id_guru','r_jadwal_siswa.pertemuan','r_jadwal_siswa.ket','r_jadwal_siswa.tanggal',
+                                  'r_kelas.nm_kelas')
                         ->get();
 
       //date_default_timezone_set('Asia/Jakarta');

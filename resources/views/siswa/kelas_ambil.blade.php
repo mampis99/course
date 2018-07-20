@@ -25,7 +25,7 @@
             <div class="box-body table-responsive no-padding">
               <table class="table table-hover">
                 <tr>
-                  <th>Id</th>
+                  <th>Kode Kelas</th>
                   <th>Nama Kelas</th>
                   <th>Tingkat</th>
                   <th>Level</th>
@@ -41,7 +41,7 @@
                     <td>{{ $ambil_kelas->level }}</td>
                     <td>{{ $ambil_kelas->nm_jenis_kelas }}</td>
                     <td>{{ $ambil_kelas->nm_area }}</td>
-                    <td>GO></td>
+                    <td>GO >></td>
                   </tr>
                 @endforeach
               </table>

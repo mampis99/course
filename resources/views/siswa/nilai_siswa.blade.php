@@ -26,7 +26,7 @@
               <table class="table table-hover">
                 <tr>
                   <th>No</th>
-                  <th>Id Kelas</th>
+                  <th>Kode Kelas</th>
                   <th>Nama Kelas</th>
                   <th>Materi</th>
                   <th>Nilai</th>
