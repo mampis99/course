@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 @extends('master.dashboard_admin')
 @section('title','Home')
 @section('content')
@@ -32,12 +31,4 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-=======
-@extends('master.dashboard_guru')
-@section('title','Home')
-@section('content')
-  <div class="content-wrapper">
-
-  </div>
->>>>>>> b63bfd078dfdccb5c93058e7797c838fed99ab34
 @endsection
