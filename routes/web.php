@@ -30,10 +30,19 @@ Route::post('/pendaftaran/siswa/save','SiswaController@pendaftaran_siswa_save');
 
 //dashboard siswa
 Route::get('/dashboard/siswa','SiswaController@home');
+Route::get('/dashboard/siswa/profile','SiswaController@profile_siswa');
 Route::get('/dashboard/siswa/paket/','SiswaController@paket');
 Route::post('/dashboard/siswa/paket/jenis/cari','SiswaController@paket_jenis_cari');
 Route::get('/dashboard/siswa/kelas/id={id_kls}','SiswaController@lihat_kelas');
 Route::get('/dashboard/siswa/kelas/detail/id={id_kls}','SiswaController@detail_kelas');
+Route::post('/dashboard/siswa/kelas/detail/id={id_kls}','SiswaController@kelas_save');
+Route::get('/dashboard/siswa/kelas/ambil','SiswaController@kelas_siswa');
+Route::get('/dashboard/siswa/jadwal','SiswaController@jadwal_siswa');
+Route::get('/dashboard/siswa/absensi','SiswaController@absensi_siswa');
+Route::get('/dashboard/siswa/nilai','SiswaController@nilai_siswa');
+Route::get('/dashboard/siswa/pembayaran','SiswaController@pembayaran');
+Route::get('/dashboard/siswa/testimoni','SiswaController@testimoni');
+Route::post('/dashboard/siswa/testimoni/save','SiswaController@testimoni_post');
 
 //pendaftaran guru
 Route::get('/pendaftaran/guru', function () {
@@ -63,4 +72,3 @@ Route::group(['prefix'=>'dashboard-admin'],function(){
         'as' => 'siswa.edit'
     ]);
 });
-//dashboard admin

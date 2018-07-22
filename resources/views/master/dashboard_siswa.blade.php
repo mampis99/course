@@ -43,7 +43,10 @@
     <!-- Logo -->
     <a href="/dashboard/siswa" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>M</b>CL</span>
+      <!--<span class="logo-mini"><b>M</b>CL</span>-->
+      <span class="logo-mini">
+        <img src="{{URL::asset('img/m.png')}}" class="img-circle" alt="logo">
+      </span>
       <!-- logo for regular state and mobile devices -->
       <span class="logo-lg"><b>MERACHEL</b> </span>
     </a>
@@ -129,7 +132,7 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="{{URL::asset('adminlte/dist/img/user2-160x160.jpg')}}" class="user-image" alt="User Image">
-              <span class="hidden-xs">{{Session::get('username')}}</span>
+              <span class="hidden-xs">{{Session::get('nama')}}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -145,7 +148,7 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="{{'/siswa/profil'}}" class="btn btn-default btn-flat">Profile</a>
+                  <a href="/dashboard/siswa/profile" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
                   <a href="{{'/logout'}}" class="btn btn-default btn-flat">Logout</a>
@@ -169,13 +172,14 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MENU</li>
         <li><a href="/dashboard/siswa/paket"><i class="fa fa-circle-o text-yellow"></i> <span>Paket</span></a></li>
-        <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Kelas</span></a></li>
-        <li><a href="{{ '/siswa/absensi' }}"><i class="fa fa-circle-o text-aqua"></i> <span>Absensi</span></a></li>
-        <li><a href="{{'/siswa/jadwal'}}"><i class="fa fa-circle-o text-aqua"></i> <span>Jadwal Kursus</span></a></li>
-        <li><a href="{{'/siswa/nilai'}}"><i class="fa fa-circle-o text-aqua"></i> <span>Nilai Hasil Belajar</span></a></li>
-        <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Pembayaran</span></a></li>
+        <li><a href="/dashboard/siswa/kelas/ambil"><i class="fa fa-circle-o text-aqua"></i> <span>Kelas</span></a></li>
+        <li><a href="/dashboard/siswa/jadwal"><i class="fa fa-circle-o text-aqua"></i> <span>Jadwal Kursus</span></a></li>
+        <li><a href="/dashboard/siswa/absensi"><i class="fa fa-circle-o text-aqua"></i> <span>Absensi</span></a></li>
+        <li><a href="/dashboard/siswa/nilai"><i class="fa fa-circle-o text-aqua"></i> <span>Nilai</span></a></li>
+        <li><a href="/dashboard/siswa/pembayaran"><i class="fa fa-circle-o text-aqua"></i> <span>Pembayaran</span></a></li>
+        <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Modul</span></a></li>
         <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Sertifikat</span></a></li>
-        <li><a href="{{ '/siswa/testimoni' }}"><i class="fa fa-circle-o text-aqua"></i> <span>Testimoni</span></a></li>
+        <li><a href="{{ '/dashboard/siswa/testimoni' }}"><i class="fa fa-circle-o text-aqua"></i> <span>Testimoni</span></a></li>
       </ul>
     </section>
     <!-- /.sidebar -->

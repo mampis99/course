@@ -5,11 +5,11 @@
     <section class="content-header">
       <h1>
         Dashboard
-        <small>Paket Detail</small>
+        <small>Siswa</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="/dashboard/siswa"><i class="fa fa-dashboard"></i>Home</a></li>
-        <li>Paket</li>
+        <li>Kelas</li>
         <li class="active">Detail</li>
       </ol>
     </section>
@@ -20,7 +20,7 @@
         <div class="col-md-6">
           <div class="box box-primary">
             <div class="box-body">
-              <img class="img-responsive" src="{{ URL::asset('img') }}/{{ $detail_kelas->id_gambar }}" alt="Photo">
+              <img class="img-responsive" src="{{ URL::asset('img') }}/{{ $detail_kelas->img_kelas }}" alt="Photo">
             </div>
           </div>
           <div class="box box-info">
@@ -56,12 +56,22 @@
                       <tr>
                         <td>Jadwal </td>
                         <td> : </td>
-                        <td> ... Gelombang</td>
+                        <td>{{ $jumlah_jadwal }} Gelombang</td>
                       </tr>
                       <tr>
                         <td>Tingkat </td>
                         <td> : </td>
                         <td>{{ $detail_kelas->tingkat_mahir }}</td>
+                      </tr>
+                      <tr>
+                        <td>Level</td>
+                        <td>:</td>
+                        <td>{{ $detail_kelas->level }}</td>
+                      </tr>
+                      <tr>
+                        <td>Jenis Kelas</td>
+                        <td> : </td>
+                        <td>{{ $detail_kelas->nm_jenis_kelas }}</td>
                       </tr>
                       <tr>
                         <td>Total Pertemuan </td>
@@ -87,22 +97,20 @@
                     <table class="table table-hover">
                       <tbody>
                         <tr>
-                          <th>NO</th>
+                          <th>No</th>
                           <th>Hari</th>
-                          <th>Tanggal</th>
                           <th>Jam</th>
                         </tr>
                         @php
                           $no = 1;
                         @endphp
-
-                        <tr>
-                          <td>...</td>
-                          <td>...</td>
-                          <td> - </td>
-                          <td>...</td>
-                        </tr>
-
+                        @foreach ($jadwal_kelasm as $jadwal_kelas)
+                          <tr>
+                            <td>{{ $no++ }}</td>
+                            <td>{{ $jadwal_kelas->hari }}</td>
+                            <td>{{ $jadwal_kelas->jam }}</td>
+                          </tr>
+                        @endforeach
                       </tbody>
                     </table>
                   </div>
@@ -135,23 +143,26 @@
             <form class="form-horizontal" action="{{url()->current()}}" method="POST">
               {{ csrf_field() }}
               <div class="box-body">
+
+                @if (count($btn)>0)
+                  <div class="alert alert-info">
+                    <strong>Info!</strong> Anda sudah memilih kelas tersebut.
+                  </div>
+                @endif
+              
                 <div class="form-group">
-                  <label for="inputArea" class="col-sm-5 control-label">Pilih Area</label>
+                  <label for="inputArea" class="col-sm-5 control-label">Area</label>
                   <div class="col-sm-6">
-                    <select class="form-control" id="inputArea" name="area_kursus">
-
-                        <option value="...">...</option>
-
+                    <select class="form-control" disabled="" id="inputArea" name="area_kursus">
+                      <option value="{{ $detail_kelas->id_area }}">{{ $detail_kelas->nm_area }}</option>
                     </select>
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="inputKelas" class="col-sm-5 control-label">Kelas</label>
+                  <label for="inputKelas" class="col-sm-5 control-label">Jenis Kelas</label>
                   <div class="col-sm-6">
-                    <select class="form-control" id="inputKelas" name="jenis_kelas">
-
-                        <option value="...">...</option>
-
+                    <select class="form-control" disabled="" id="inputKelas" name="jenis_kelas">
+                      <option value="{{ $detail_kelas->id_jenis_kelas }}">{{ $detail_kelas->nm_jenis_kelas }}</option>
                     </select>
                   </div>
                 </div>
@@ -159,9 +170,9 @@
                   <label for="inputJam" class="col-sm-5 control-label">Pilih Jam dan Hari</label>
                   <div class="col-sm-6">
                     <select class="form-control" id="inputJam" name="jam_hari">
-
-                        <option value="...">... || ... </option>
-
+                      @foreach ($jadwal_kelasm as $jadwal_kelas)
+                        <option value="{{ $jadwal_kelas->id_jdw_kelas }}">{{ $jadwal_kelas->hari }} || {{ $jadwal_kelas->jam }}</option>
+                      @endforeach
                     </select>
                   </div>
                 </div>
@@ -169,15 +180,15 @@
                   <label for="inputBayar" class="col-sm-5 control-label">Metode Pembayaran</label>
                   <div class="col-sm-6">
                     <select class="form-control" id="inputBayar" name="metode_bayar">
-                      <option>Tunai</option>
-                      <option>Transfer</option>
+                      <option>TUNAI</option>
+                      <option>TRANSFER</option>
                     </select>
                   </div>
                 </div>
 
               </div>
               <div class="box-footer">
-                <button type="submit" class="btn btn-info pull-right">OK</button>
+                <button type="submit" class="btn btn-info pull-right" {{ $btn }}>OK</button>
               </div>
             </form>
           </div>

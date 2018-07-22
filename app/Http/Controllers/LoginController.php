@@ -20,38 +20,53 @@ class LoginController extends Controller
       $password = $request->password;
 
       //dd($username." ".$password);
-      $data = DB::table('r_login')
+      //data loin revisi
+      $login = DB::table('r_login')
                   ->where('r_login.status','=',1)
                   ->where('r_login.username','=',$username)
-                  ->join('m_siswa','r_login.id_user','=','m_siswa.id_siswa')
-                  ->select('r_login.id_user','m_siswa.nm_siswa','r_login.username','r_login.password','r_login.role','r_login.status')
+                  ->select('r_login.id_user','r_login.username','r_login.password','r_login.role','r_login.status')
                   ->first();
 
-      if (count($data)>0)
+      if (count($login)>0)
       {
-        if (Hash::check($password, Hash::make($data->password)))
+        if (Hash::check($password, Hash::make($login->password)))
         {
-          if ($data->role == "siswa")
+          if ($login->role == "siswa")
           {
-            Session::put('id',$data->id_user);
-            Session::put('username',$data->username);
+            $data = DB::table('m_siswa')
+                      ->where('m_siswa.id_siswa','=',$login->id_user)
+                      ->where('m_siswa.status','=','aktif')
+                      ->first();
+
+            Session::put('id',$data->id_siswa);
             Session::put('nama',$data->nm_siswa);
+            Session::put('username',$username);
             Session::put('password',$password);
+
             return redirect('/dashboard/siswa');
           }
-          if ($data->role == "guru")
+          if ($login->role == "guru")
           {
-            //Session::put('id',$data->id_siswa);
-            //Session::put('username',$data->username);
-            //Session::put('password',$password);
+            $data = DB::table('m_guru')
+                       ->where('m_guru.id_guru','=',$login->id_user)
+                       ->where('m_guru.status','=','aktif')
+                       ->first();
+
+            Session::put('id',$data->id_guru);
+            Session::put('nama',$data->nm_guru);
+            Session::put('username',$username);
+            Session::put('password',$password);
+
             return "halaman guru";
           }
-          if ($data->role == "admin")
+          if ($login->role == "admin")
           {
+
             //Session::put('id',$data->id_siswa);
-            //Session::put('username',$data->username);
-            //Session::put('password',$password);
-            return "halaman admin";
+            Session::put('nama','Admin');
+            Session::put('username',$username);
+            Session::put('password',$password);
+            return redirect('/dashboard/admin');
           }
         }
         else {
