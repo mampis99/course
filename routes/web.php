@@ -35,13 +35,32 @@ Route::post('/dashboard/siswa/paket/jenis/cari','SiswaController@paket_jenis_car
 Route::get('/dashboard/siswa/kelas/id={id_kls}','SiswaController@lihat_kelas');
 Route::get('/dashboard/siswa/kelas/detail/id={id_kls}','SiswaController@detail_kelas');
 
-
-
 //pendaftaran guru
 Route::get('/pendaftaran/guru', function () {
     return 'form pendaftaran guru';
 });
 
 //dashboard guru
-
+Route::group(['prefix'=>'dashboard-admin'],function(){
+    Route::get('/',[
+        'uses' => 'AdminController@index',
+        'as' => 'admin.dashboard'
+    ]);
+    Route::get('/siswa',[
+        'uses' => 'AdminController@showSiswa',
+        'as' => 'siswa.show'
+    ]);
+    Route::get('/siswa/get',[
+        'uses' => 'AdminController@getSiswa',
+        'as' => 'siswa.get'
+    ]);
+    Route::delete('/siswa/delete/',[
+        'uses' => 'AdminController@deleteSiswa',
+        'as' => 'siswa.delete'
+    ]);
+    Route::post('/siswa/edit',[
+        'uses' => 'AdminController@editSiswa',
+        'as' => 'siswa.edit'
+    ]);
+});
 //dashboard admin
