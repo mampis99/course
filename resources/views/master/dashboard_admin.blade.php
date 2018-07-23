@@ -39,7 +39,7 @@
 <!--Header-->
   <header class="main-header">
     <!-- Logo -->
-    <a href="{{'/siswa'}}" class="logo">
+    <a href="#" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>M</b>CL</span>
       <!-- logo for regular state and mobile devices -->
@@ -143,7 +143,7 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="{{'/siswa/profil'}}" class="btn btn-default btn-flat">Profile</a>
+                  <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
                   <a href="{{'/logout'}}" class="btn btn-default btn-flat">Logout</a>
@@ -166,7 +166,19 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MENU</li>
-
+        <li><a href="#"><i class="glyphicon glyphicon-home"></i> <span>Dashboard</span></a></li>
+        <li class="treeview">
+          <a href="#">
+            <i class="glyphicon glyphicon-tasks"></i> <span>Master</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="#"><i class="fa fa-circle-o"></i> Group Paket</a></li>
+            <li><a href="#"><i class="fa fa-circle-o"></i> Area</a></li>
+          </ul>
+        </li>
       </ul>
     </section>
     <!-- /.sidebar -->
