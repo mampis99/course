@@ -50,9 +50,25 @@ Route::get('/pendaftaran/guru', function () {
 });
 
 //dashboard guru
-
-
-
-
-//dashboard admin
-Route::get('/dashboard/admin','AdminController@home');
+Route::group(['prefix'=>'dashboard-admin'],function(){
+    Route::get('/',[
+        'uses' => 'AdminController@index',
+        'as' => 'admin.dashboard'
+    ]);
+    Route::get('/siswa',[
+        'uses' => 'AdminController@showSiswa',
+        'as' => 'siswa.show'
+    ]);
+    Route::get('/siswa/get',[
+        'uses' => 'AdminController@getSiswa',
+        'as' => 'siswa.get'
+    ]);
+    Route::delete('/siswa/delete/',[
+        'uses' => 'AdminController@deleteSiswa',
+        'as' => 'siswa.delete'
+    ]);
+    Route::post('/siswa/edit',[
+        'uses' => 'AdminController@editSiswa',
+        'as' => 'siswa.edit'
+    ]);
+});
