@@ -49,7 +49,7 @@ Route::get('/pendaftaran/guru', function () {
     return 'form pendaftaran guru';
 });
 
-//dashboard guru
+//dashboard siswa
 Route::group(['prefix'=>'dashboard-admin'],function(){
     Route::get('/',[
         'uses' => 'AdminController@index',

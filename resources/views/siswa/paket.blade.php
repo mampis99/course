@@ -49,7 +49,7 @@
       </div>
       <div class="row">
         <div class="">
-          @if (count($data_pakets)>0)
+          @if ($cek_paket > 0)
             @foreach ($data_pakets as $data_paket)
               <div class="col-md-4">
                 <div class="box box-solid">

@@ -21,13 +21,20 @@ class LoginController extends Controller
 
       //dd($username." ".$password);
       //data loin revisi
+      $cek_login = DB::table('r_login')
+                      ->where('r_login.status','=',1)
+                      ->where('r_login.username','=',$username)
+                      ->select('r_login.id_user')
+                      ->count();
+      //dd(count($cek_login));
       $login = DB::table('r_login')
                   ->where('r_login.status','=',1)
                   ->where('r_login.username','=',$username)
                   ->select('r_login.id_user','r_login.username','r_login.password','r_login.role','r_login.status')
                   ->first();
 
-      if (count($login)>0)
+      //dd($cek_login);
+      if ($cek_login == 1)
       {
         if (Hash::check($password, Hash::make($login->password)))
         {
@@ -76,7 +83,7 @@ class LoginController extends Controller
       }
       else
       {
-        return "o";
+        return "Anda Belum Terdaftar";
       }
       //dd($data);
 

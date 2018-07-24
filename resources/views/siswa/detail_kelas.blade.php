@@ -144,12 +144,14 @@
               {{ csrf_field() }}
               <div class="box-body">
 
-                @if (count($btn)>0)
+                @if (is_null($btn))
+                  <p> </p>
+                @else
                   <div class="alert alert-info">
                     <strong>Info!</strong> Anda sudah memilih kelas tersebut.
                   </div>
                 @endif
-              
+
                 <div class="form-group">
                   <label for="inputArea" class="col-sm-5 control-label">Area</label>
                   <div class="col-sm-6">
@@ -188,7 +190,7 @@
 
               </div>
               <div class="box-footer">
-                <button type="submit" class="btn btn-info pull-right" {{ $btn }}>OK</button>
+                <button type="submit" class="btn btn-info pull-right" {{ $btn }} >OK</button>
               </div>
             </form>
           </div>

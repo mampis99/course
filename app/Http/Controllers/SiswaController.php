@@ -50,7 +50,9 @@ class SiswaController extends Controller
       $role = "siswa";
       $i = 0;
 
-      if (count($max_siswa)==0) {
+      //dd($max_siswa);
+
+      if ($max_siswa == 0) {
         $id_siswa = $char1."/".$char2."/".$tahun_ini."/".$bulan_ini."/".sprintf('%04s',1);
       }
       else {
@@ -128,11 +130,13 @@ class SiswaController extends Controller
                         ->where('status','=','AKTIF')
                         ->select('id_group','nm_group')
                         ->get();
-      $data_paket = null;
+      $cek_paket = 0;
+      $data_paket = 0;
       //dd(count($data_kelas));
       //d($jenis_paket);
       return view('siswa/paket')->with([
                                         'group_pakets'=>$group_paket,
+                                        'cek_paket'=>$cek_paket,
                                         'data_pakets'=>$data_paket
                                       ]);
     }
@@ -146,6 +150,10 @@ class SiswaController extends Controller
 
       $id_group = $request->id_group;
       //dd($id_group);
+      $cek_paket = DB::table('r_paket')
+                      ->where('r_paket.id_group','=',$id_group)
+                      ->count('r_paket.id_group');
+
       $data_paket = DB::table('r_paket')
                       ->where('r_paket.id_group','=',$id_group)
                       ->where('r_paket.status','=','AKTIF')
@@ -156,6 +164,7 @@ class SiswaController extends Controller
       //dd($data_paket);
       return view('siswa/paket')->with([
                                         'group_pakets'=>$group_paket,
+                                        'cek_paket'=>$cek_paket,
                                         'data_pakets'=>$data_paket
                                       ]);
     }
@@ -203,9 +212,9 @@ class SiswaController extends Controller
                       ->where('r_kelas_siswa.id_kelas','=',$id_kls)
                       ->join('r_kelas_siswa','r_login.id_user','=','r_kelas_siswa.id_siswa')
                       ->select('r_kelas_siswa.id_kelas')
-                      ->first();
+                      ->count();
 
-      if (count($cek_kelas)>0) {
+      if ($cek_kelas > 0) {
         $btn = "disabled";
       }
       else {
@@ -234,7 +243,7 @@ class SiswaController extends Controller
 
       //dd($max_kelas_siswa);
 
-      if (count($max_kelas_siswa)==0) {
+      if (is_null($max_kelas_siswa)) {
         $id_kelas_siswa = $char1."/".$char2."/".$tahun_ini."/".$bulan_ini."/".sprintf('%04s',1);
       }
       else {
@@ -414,6 +423,10 @@ class SiswaController extends Controller
       date_default_timezone_set('Asia/Jakarta');
       $created_date = date('Y-m-d H:i:s');
 
+      $cek_data = DB::table('r_login')
+                        ->where('r_login.username','=',$username)
+                        ->count('r_login.username');
+
       $id_siswa = DB::table('r_login')
                         ->where('r_login.username','=',$username)
                         ->where('r_login.status','=',1)
@@ -422,7 +435,7 @@ class SiswaController extends Controller
                         ->first();
 
       //dd($tanggal_daftar);
-      if (count($id_siswa)>0) {
+      if ( $cek_data == 1) {
         DB::table('r_testimoni')->insert([
                                         ['id_siswa'=>$id_siswa->id_user,
                                           'isi_testimoni'=>$isi_testimoni,
