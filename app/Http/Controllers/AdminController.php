@@ -34,7 +34,7 @@ class AdminController extends Controller
                 <form action="/dashboard-admin/siswa/edit" method="post">
                 <input type="hidden" value="'.$token.'" name="_token">
                 <input type="hidden" value="'.$user->id_siswa.'" name="_id">
-                
+
                 <button type="submit" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Edit</button>
                 </form>
 
@@ -42,7 +42,7 @@ class AdminController extends Controller
                 <input type="hidden" value="'.$token.'" name="_token">
                 <input type="hidden" value="delete" name="_method">
                 <input type="hidden" value="'.$user->id_siswa.'" name="_id">
-                
+
                 <button type="submit" onclick="return confirm(\'yakin ingin menghapus data?\')" class="btn btn-xs btn-warning"><i class="fa fa-trash"></i> Hapus</button>
                 </form>
                 ';

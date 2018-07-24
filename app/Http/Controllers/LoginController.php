@@ -73,7 +73,7 @@ class LoginController extends Controller
             Session::put('nama','Admin');
             Session::put('username',$username);
             Session::put('password',$password);
-            return redirect('/dashboard/admin');
+            return redirect('/dashboard-admin/');
           }
         }
         else {
