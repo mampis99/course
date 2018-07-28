@@ -71,4 +71,19 @@ Route::group(['prefix'=>'dashboard-admin'],function(){
         'uses' => 'AdminController@editSiswa',
         'as' => 'siswa.edit'
     ]);
+
+    Route::group(['prefix' => 'area'],function(){
+        Route::get('/',[
+            'uses' => 'AdminController@showArea',
+            'as' => 'area.show'
+        ]);
+        Route::get('/get',[
+            'uses' => 'AdminController@getArea',
+            'as' => 'area.get'
+        ]);
+        Route::post('/store',[
+            'uses' => 'AdminController@storeArea',
+            'as' => 'area.store'
+        ]);
+    });
 });

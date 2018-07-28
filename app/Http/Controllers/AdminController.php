@@ -78,4 +78,22 @@ class AdminController extends Controller
     public function editSiswa(Request $request){
 
     }
+
+    public function showArea(){
+        return view('admin.area.show');
+    }
+    public function getArea(){
+        $data = DB::table('m_area as a')
+                ->get();
+        return Datatables::of($data)->make(true);
+    }
+    public function storeArea(Request $request){
+        $area = $request->area;
+        DB::table('m_area')->insert([
+            'nm_area' => $area,
+            'created_date' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')
+        ]);
+        return redirect()->back()->with('message','Berhasil Menambah Data');
+    }
 }
